@@ -1,0 +1,17 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --bg-color: #282828;
+  --fg-color: #ebdbb2;
+  --bg0: #7c6f64;
+  --fg0: fbf1c7;
+  --fg2: #a89984;
+  --red: #cc241d;
+  --red-hover: #fb4934;
+  --purple-hover: #d3869b;
+  --purple: #b16286;
+  --gray1: #3c3836;
+  background-color: var(--bg-color);
+}

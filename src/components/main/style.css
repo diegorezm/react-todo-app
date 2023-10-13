@@ -1,0 +1,97 @@
+.main{
+  padding: 30px;
+  margin:50px auto;
+  background-color: var(--gray1);
+  color: var(--fg-color);
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.task-form{
+  margin-top: 10px;
+}
+.task-form input[type="text"]{
+  font-size: 16px;
+  background: var(--fg2);
+  color:white;
+  height: 40px;
+  min-width: 80%;
+  padding: 0px;
+  text-align: center;
+  border: 1px solid #242424;
+}
+.task-form input[type="text"]:focus{
+  outline: none;
+}
+.task-form button[type="submit"]{
+  color: var(--fg-color);
+  border: none;
+  height: 40px;
+  width: 40px;
+  background: var(--red);
+}
+.task-form button[type="submit"]:hover{
+  cursor: pointer;
+  background:var(--red-hover)
+}
+
+.tasks{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+.task-list:hover{
+  background-color: var(--bg0);
+}
+
+.task-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--gray1);
+  color: var(--fg-color);
+  min-width: 600px;
+  margin: 2px auto;
+  list-style: none;
+  border-radius: 5px;
+  transition: all 600ms;
+}
+
+.task-list h1{
+  margin: 20px auto;
+}
+
+.tasks .edit{
+  color: var(--purple);
+}
+
+.tasks .edit:hover{
+  color:var(--purple-hover)
+}
+
+.tasks .delete{
+  color: var(--red);
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+
+.tasks .delete:hover{
+  color: var(--red-hover);
+}
+.tasks .edit, .tasks .delete{
+  font-size: 24px;
+}
+
+.tasks .edit, .tasks .delete:hover{
+  cursor: pointer;
+  transition: all 600ms;
+}
