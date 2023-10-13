@@ -1,49 +1,100 @@
 import React, { Component } from 'react';
-import { FaPlus, FaEdit, FaWindowClose } from 'react-icons/fa';
+import Tasks from '../Tasks';
+import EditForm from '../editForm/EditForm';
+import Form from '../Form';
 import './style.css';
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      novaTarefa: '',
-      tarefas: ['fazer cafe', 'estudar', 'sla', 'sla dnv'],
-    };
+  state = {
+    novaTarefa: '',
+    tarefas: [],
+    EditFormVisible: false,
+    EditFormData: '',
+    EditFormIndex: -1,
+  };
+
+  componentDidMount() {
+    const tarefas = JSON.parse(localStorage.getItem('tarefas'));
+    if (!tarefas) return;
+    this.setState({ tarefas });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { tarefas } = this.state;
+    if (tarefas === prevState.tarefas) return;
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
+    const { tarefas } = this.state;
+    let { novaTarefa } = this.state;
+    novaTarefa = novaTarefa.trim();
+    if (tarefas.indexOf(novaTarefa) !== -1) return;
+    this.setState({
+      tarefas: [...tarefas, novaTarefa],
+      novaTarefa: '',
+    });
+  };
+
+  handleDelete = (e, index) => {
+    const { tarefas } = this.state;
+    const newTarefas = [...tarefas];
+    newTarefas.splice(index, 1);
+
+    this.setState({
+      tarefas: newTarefas,
+    });
+  };
+
+  handleInputChange = (e) => {
+    this.setState({
+      novaTarefa: e.target.value,
+    });
+  };
+
+  handleCancelEdit = () => {
+    this.setState({
+      EditFormVisible: false,
+    });
+  };
+
+  handleEdit = (e, index) => {
+    const { tarefas } = this.state;
+    this.setState({
+      EditFormVisible: true,
+      EditFormData: tarefas[index],
+      EditFormIndex: index,
+    });
   };
 
   render() {
-    const { novaTarefa, tarefas } = this.state;
+    const {
+      novaTarefa,
+      tarefas,
+      EditFormVisible,
+      EditFormData,
+      EditFormIndex,
+    } = this.state;
     return (
-      <div>
-        <div className="main">
-          <h1>Lista de tarefas</h1>
-          <form className="task-form" onSubmit={this.handleFormSubmit}>
-            <input
-              value={novaTarefa}
-              onChange={(e) => this.setState({ novaTarefa: e.target.value })}
-              type="text"
-            />
-            <button type="submit">
-              <FaPlus />
-            </button>
-          </form>
-        </div>
+      <div className="container">
+        {EditFormVisible ? (
+          <EditForm
+            taskData={EditFormData}
+            onCancel={this.handleCancelEdit}
+            taskList={tarefas}
+            index={EditFormIndex}
+          />
+        ) : null}
 
-        <ul className="tasks">
-          {tarefas.map((tarefa) => (
-            <li key={tarefa} className="task-list">
-              <h1>{tarefa}</h1>
-              <div>
-                <FaEdit className="edit" />
-                <FaWindowClose className="delete" />
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className="main">
+          <Form
+            handleInputChange={this.handleInputChange}
+            handleFormSubmit={this.handleFormSubmit}
+            novaTarefa={novaTarefa}
+          />
+        </div>
+        <Tasks tarefas={tarefas} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
       </div>
     );
   }

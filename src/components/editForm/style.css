@@ -1,0 +1,65 @@
+.mainbg{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--gray1);
+  width: 600px;
+  height: 250px;
+  border-radius: 5px;
+  margin-bottom: 10%;
+}
+.form-container h1{
+  color: var(--fg-color);
+}
+
+.form-container input[type="text"]{
+  font-size: 16px;
+  background: var(--fg2);
+  color:white;
+  height: 40px;
+  min-width: 80%;
+  padding: 0px;
+  text-align: center;
+  border: 1px solid #242424;
+}
+.form-container input[type="text"]:focus{
+  outline: none;
+}
+.form-container button[type="submit"]{
+  margin-top: 5px;
+  color: var(--fg-color);
+  border: none;
+  height: 40px;
+  width: 60px;
+  background: var(--red);
+}
+.task-form button[type="submit"]:hover{
+  cursor: pointer;
+  background:var(--red-hover)
+}
+
+.close-window{
+  color:var(--red);
+  font-size: 32px;
+  position: fixed;
+  top: 2%;
+  right: 2%;
+}
+.close-window:hover{color:var(--red-hover); cursor: pointer;}

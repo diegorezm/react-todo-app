@@ -1,0 +1,29 @@
+
+.task-form{
+  margin-top: 10px;
+}
+.task-form input[type="text"]{
+  font-size: 16px;
+  background: var(--fg2);
+  color:white;
+  height: 40px;
+  min-width: 80%;
+  padding: 0px;
+  text-align: center;
+  border: 1px solid #242424;
+}
+.task-form input[type="text"]:focus{
+  outline: none;
+}
+.task-form button[type="submit"]{
+  color: var(--fg-color);
+  border: none;
+  height: 40px;
+  width: 40px;
+  background: var(--red);
+}
+.task-form button[type="submit"]:hover{
+  cursor: pointer;
+  background:var(--red-hover)
+}
+

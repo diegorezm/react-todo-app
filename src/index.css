@@ -14,4 +14,17 @@
   --purple: #b16286;
   --gray1: #3c3836;
   background-color: var(--bg-color);
+
+  height: 100%;
+  width: 100%;
 }
+
+/* index.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
