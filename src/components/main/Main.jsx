@@ -6,50 +6,50 @@ import './style.css';
 
 export default class Main extends Component {
   state = {
-    novaTarefa: '',
-    tarefas: [],
+    newTask: '',
+    tasks: [],
     EditFormVisible: false,
     EditFormData: '',
     EditFormIndex: -1,
   };
 
   componentDidMount() {
-    const tarefas = JSON.parse(localStorage.getItem('tarefas'));
-    if (!tarefas) return;
-    this.setState({ tarefas });
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    if (!tasks) return;
+    this.setState({ tasks });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { tarefas } = this.state;
+    const { tasks: tarefas } = this.state;
     if (tarefas === prevState.tarefas) return;
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { tarefas } = this.state;
-    let { novaTarefa } = this.state;
-    novaTarefa = novaTarefa.trim();
-    if (tarefas.indexOf(novaTarefa) !== -1) return;
+    const { tasks } = this.state;
+    let { newTask } = this.state;
+    newTask = newTask.trim();
+    if (tasks.indexOf(newTask) !== -1) return;
     this.setState({
-      tarefas: [...tarefas, novaTarefa],
-      novaTarefa: '',
+      tasks: [...tasks, newTask],
+      newTask: '',
     });
   };
 
   handleDelete = (e, index) => {
-    const { tarefas } = this.state;
-    const newTarefas = [...tarefas];
-    newTarefas.splice(index, 1);
+    const { tasks } = this.state;
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
 
     this.setState({
-      tarefas: newTarefas,
+      tasks: newTasks,
     });
   };
 
   handleInputChange = (e) => {
     this.setState({
-      novaTarefa: e.target.value,
+      newTask: e.target.value,
     });
   };
 
@@ -60,7 +60,7 @@ export default class Main extends Component {
   };
 
   handleEdit = (e, index) => {
-    const { tarefas } = this.state;
+    const { tasks: tarefas } = this.state;
     this.setState({
       EditFormVisible: true,
       EditFormData: tarefas[index],
@@ -70,8 +70,8 @@ export default class Main extends Component {
 
   render() {
     const {
-      novaTarefa,
-      tarefas,
+      newTask,
+      tasks,
       EditFormVisible,
       EditFormData,
       EditFormIndex,
@@ -82,7 +82,7 @@ export default class Main extends Component {
           <EditForm
             taskData={EditFormData}
             onCancel={this.handleCancelEdit}
-            taskList={tarefas}
+            taskList={tasks}
             index={EditFormIndex}
           />
         ) : null}
@@ -91,10 +91,10 @@ export default class Main extends Component {
           <Form
             handleInputChange={this.handleInputChange}
             handleFormSubmit={this.handleFormSubmit}
-            novaTarefa={novaTarefa}
+            newTask={newTask}
           />
         </div>
-        <Tasks tarefas={tarefas} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+        <Tasks tasks={tasks} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
       </div>
     );
   }

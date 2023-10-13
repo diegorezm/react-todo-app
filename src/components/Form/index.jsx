@@ -3,13 +3,13 @@ import { FaPlus } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import './Form.css';
 
-export default function Form({ handleFormSubmit, handleInputChange, novaTarefa }) {
+export default function Form({ handleFormSubmit, handleInputChange, newTask }) {
   return (
     <>
-      <h1>Lista de tarefas</h1>
+      <h1>Task list</h1>
       <form className="task-form" onSubmit={handleFormSubmit}>
         <input
-          value={novaTarefa}
+          value={newTask}
           onChange={handleInputChange}
           type="text"
         />
@@ -24,5 +24,5 @@ export default function Form({ handleFormSubmit, handleInputChange, novaTarefa }
 Form.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  novaTarefa: PropTypes.string.isRequired,
+  newTask: PropTypes.string.isRequired,
 };

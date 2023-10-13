@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { FaEdit, FaWindowClose } from 'react-icons/fa';
 import './Tasks.css';
 
-export default function Tasks({ tarefas, handleEdit, handleDelete }) {
+export default function Tasks({ tasks, handleEdit, handleDelete }) {
+  console.log(tasks);
   return (
     <ul className="tasks">
-      {tarefas.map((tarefa, i) => (
-        <li key={tarefa} className="task-list">
-          <h1>{tarefa}</h1>
+      {tasks.map((task, i) => (
+        <li key={task} className="task-list">
+          <h1>{task}</h1>
           <span>
             <FaEdit
               className="edit"

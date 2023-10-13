@@ -18,7 +18,7 @@ export default class EditForm extends Component {
     const { taskList, index } = this.props;
     console.log(data);
     taskList[index] = data;
-    localStorage.setItem('tarefas', JSON.stringify(taskList));
+    localStorage.setItem('tasks', JSON.stringify(taskList));
     onCancel();
   };
 
