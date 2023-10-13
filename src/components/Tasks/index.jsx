@@ -4,7 +4,6 @@ import { FaEdit, FaWindowClose } from 'react-icons/fa';
 import './Tasks.css';
 
 export default function Tasks({ tasks, handleEdit, handleDelete }) {
-  console.log(tasks);
   return (
     <ul className="tasks">
       {tasks.map((task, i) => (
